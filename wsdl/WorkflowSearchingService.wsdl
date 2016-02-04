@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions targetNamespace="http://www.w3schools.com" name="WorkflowSearchingService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="WFInfo.xsd"/>
+    </xsd:schema>
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<xsd:complexType name="getWorkflowsType">
+			<xsd:sequence />
+		</xsd:complexType>
+
+		<xsd:complexType name="getProcessesType">
+			<xsd:sequence>
+				<xsd:element name="process" type="processType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:schema>
+  </types>
+  <message name="getWorkflows">
+    <part name="emptyParam" element="getWorkflowsType"/>
+  </message>
+  <message name="getWorkflowsResponse">
+    <part name="listOfWorkflow" element="wfInfoType"/>
+  </message>
+  <message name="getProcesses">
+    <part name="workflowName" element="xsd:string"/>
+  </message>
+  <message name="getProcessesResponse">
+    <part name="listOfProcess" element="getProcessesType"/>
+  </message>
+  <message name="UnknownWorkflow">
+    <part name="fault" element="xsd:string"/>
+  </message>
+  <portType name="WorkflowSearching">
+    <operation name="getWorkflows">
+      <input message="getWorkflows"/>
+      <output message="getWorkflowsResponse"/>
+    </operation>
+    <operation name="getProcesses">
+      <input message="getProcesses"/>
+      <output message="getProcessesResponse"/>
+      <fault message="UnknownWorkflow" name="UnknownWorkflow"/>
+    </operation>
+  </portType>
+  <binding name="WorkflowSearchingImplPortBinding" type="WorkflowSearching">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="getWorkflows">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getProcesses">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="UnknownWorkflow">
+        <soap:fault name="UnknownWorkflow" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="WorkflowSearchingService">
+    <port name="WorkflowSearchingImplPort" binding="WorkflowSearchingImplPortBinding">
+      <soap:address location="http://localhost:7071/wfinfo"/>
+    </port>
+  </service>
+</definitions>
+

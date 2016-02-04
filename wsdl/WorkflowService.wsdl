@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="WorkflowService" targetNamespace="http://www.w3schools.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:import location="WorkflowSearchingService.wsdl" ></wsdl:import>
+<wsdl:types>
+    <xsd:schema>
+      <xsd:import schemaLocation="WFInfo.xsd"/>
+    </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        	<xsd:complexType name="takeActionType">
+			<xsd:sequence>
+				<xsd:element name="name" type="xsd:string"/>
+				<xsd:element name="role" type="xsd:string"/>
+				<xsd:element name="actionId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+        	<xsd:complexType name="nextActionType">
+        		<xsd:sequence>
+        			<xsd:element name="actionName" type="xsd:string" maxOccurs="unbounded" minOccurs="1" />
+        		</xsd:sequence>
+        	</xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="createProcessRequest">
+    	<wsdl:part name="workFlowName" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createProcessResponse">
+    	<wsdl:part name="processId" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="systemFault">
+    	<wsdl:part name="fault" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getProcessRequest">
+    	<wsdl:part name="processId" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getProcessResponse">
+    	<wsdl:part name="processInfo" element="processType"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="unknownProcessFault">
+    	<wsdl:part name="fault" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="takeActionRequest">
+    	<wsdl:part name="params" element="takeActionType"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="takeActionResponse">
+    	<wsdl:part name="out" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AlreadyTakenFault">
+    	<wsdl:part name="fault" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DifferentRoleFault">
+    	<wsdl:part name="fault" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="completeActionRequest">
+    	<wsdl:part name="nextAction" element="nextActionType"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="completeActionResponse">
+    	<wsdl:part name="out" element="xsd:string"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="JoinWorkflow">
+    	<wsdl:operation name="createProcess">
+    		<wsdl:input message="createProcessRequest"></wsdl:input>
+    		<wsdl:output message="createProcessResponse"></wsdl:output>
+            <wsdl:fault name="systemFault" message="systemFault"></wsdl:fault>
+        </wsdl:operation>
+    	<wsdl:operation name="getProcess">
+    		<wsdl:input message="getProcessRequest"></wsdl:input>
+    		<wsdl:output message="getProcessResponse"></wsdl:output>
+            <wsdl:fault name="unknownProcessFault" message="unknownProcessFault"></wsdl:fault>
+        </wsdl:operation>
+    	<wsdl:operation name="takeAction">
+    		<wsdl:input message="takeActionRequest"></wsdl:input>
+    		<wsdl:output message="takeActionResponse"></wsdl:output>
+            <wsdl:fault name="AlreadyTakenFault" message="AlreadyTakenFault"></wsdl:fault>
+            <wsdl:fault name="DifferentRoleFault" message="DifferentRoleFault"></wsdl:fault>
+        </wsdl:operation>
+    	<wsdl:operation name="completeAction">
+    		<wsdl:input message="completeActionRequest"></wsdl:input>
+    		<wsdl:output message="completeActionResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WorkflowImplPortBinding" type="JoinWorkflow">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    	<wsdl:operation name="createProcess">
+    		<soap:operation	soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="systemFault">
+    			<soap:fault use="literal" name="systemFault" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="getProcess">
+    		<soap:operation	soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="unknownProcessFault">
+    			<soap:fault use="literal" name="unknownProcessFault" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="takeAction">
+    		<soap:operation	soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="AlreadyTakenFault">
+    			<soap:fault use="literal" name="AlreadyTakenFault" />
+    		</wsdl:fault>
+    		<wsdl:fault name="DifferentRoleFault">
+    			<soap:fault use="literal" name="DifferentRoleFault" />
+    		</wsdl:fault>
+    	</wsdl:operation>
+    	<wsdl:operation name="completeAction">
+    		<soap:operation	soapAction="" />
+    		<wsdl:input>
+    			<soap:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WorkflowService">
+    	<wsdl:port name="WorkflowPort" binding="WorkflowImplPortBinding">
+    		<soap:address location="http://localhost:7070/wfcontrol" />
+    	</wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
