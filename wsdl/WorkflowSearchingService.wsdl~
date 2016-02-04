@@ -44,7 +44,7 @@
     <wsdl:operation name="getProcesses">
       <wsdl:input message="tns:getProcessesRequest"/>
       <wsdl:output message="tns:getProcessesResponse"/>
-      <wsdl:fault message="tns:UnknownWorkflow" name="UnknownWorkflow"/>
+      <wsdl:fault message="UnknownWorkflow" name="UnknownWorkflow"/>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WorkflowSearchingImplPortBinding" type="tns:WorkflowSearching">

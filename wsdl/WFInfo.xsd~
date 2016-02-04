@@ -4,7 +4,6 @@
 	<xsd:element name="wfInfo" type="wfInfoType"></xsd:element>
 	<xsd:element name="actionName" type="xsd:string"></xsd:element>
 	<xsd:element name="role" type="xsd:string"></xsd:element>
-	<xsd:element name="process" type="processType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
     
 	<xsd:complexType name="wfInfoType">
 		<xsd:sequence>
@@ -15,7 +14,7 @@
 	<xsd:complexType name="workflowType">
 		<xsd:choice maxOccurs="unbounded">
 			<xsd:element name="action" type="actionType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
-			<xsd:element ref="process" />
+			<xsd:element name="process" type="processType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
 		</xsd:choice>
 		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
 	</xsd:complexType>
