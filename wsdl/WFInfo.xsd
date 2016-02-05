@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://www.w3schools.com" >
+<xs:schema version="1.0" targetNamespace="http://pad.polito.it/Workflow" xmlns:tns="http://pad.polito.it/Workflow" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-	<xsd:element name="wfInfo" type="wfInfoType"></xsd:element>
-	<xsd:element name="actionName" type="xsd:string"></xsd:element>
-	<xsd:element name="role" type="xsd:string"></xsd:element>
-	<xsd:element name="process" type="processType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+	<xs:element name="wfInfo" type="tns:wfInfoType"></xs:element>
+	<xs:element name="actionName" type="xs:string"></xs:element>
+	<xs:element name="role" type="xs:string"></xs:element>
+	<xs:element name="process" type="tns:processType" maxOccurs="unbounded" minOccurs="0"></xs:element>
     
-	<xsd:complexType name="wfInfoType">
-		<xsd:sequence>
-			<xsd:element name="workflow" type="workflowType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
+	<xs:complexType name="wfInfoType">
+		<xs:sequence>
+			<xs:element name="workflow" type="tns:workflowType" maxOccurs="unbounded" minOccurs="0"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
 
-	<xsd:complexType name="workflowType">
-		<xsd:choice maxOccurs="unbounded">
-			<xsd:element name="action" type="actionType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
-			<xsd:element ref="process" />
-		</xsd:choice>
-		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
-	</xsd:complexType>
+	<xs:complexType name="workflowType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="action" type="tns:actionType" maxOccurs="unbounded" minOccurs="1"></xs:element>
+			<xs:element ref="tns:process" />
+		</xs:choice>
+		<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
 
-	<xsd:complexType name="actionType">
-		<xsd:choice maxOccurs="unbounded">
-			<xsd:element ref="role" />
-			<xsd:choice maxOccurs="1" minOccurs="0">
-				<xsd:element name="followingActions" type="followingActionsType"></xsd:element>
-				<xsd:element name="nestedWorkflow" type="xsd:string"></xsd:element>
-			</xsd:choice>
-		</xsd:choice>
-		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
-		<xsd:attribute name="type" type="typeEnumType" use="required"></xsd:attribute>
-		<xsd:attribute name="automInst" type="xsd:boolean" use="required"></xsd:attribute>
-	</xsd:complexType>
+	<xs:complexType name="actionType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="tns:role" />
+			<xs:choice maxOccurs="1" minOccurs="0">
+				<xs:element name="followingActions" type="tns:followingActionsType"></xs:element>
+				<xs:element name="nestedWorkflow" type="xs:string"></xs:element>
+			</xs:choice>
+		</xs:choice>
+		<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+		<xs:attribute name="type" type="tns:typeEnumType" use="required"></xs:attribute>
+		<xs:attribute name="automInst" type="xs:boolean" use="required"></xs:attribute>
+	</xs:complexType>
 
-	<xsd:complexType name="processType">
-		<xsd:sequence>
-			<xsd:element name="actionStatus" type="actionStatusType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
-		</xsd:sequence>
-		<xsd:attribute name="startAt" type="xsd:string" use="required"></xsd:attribute>
-	</xsd:complexType>
+	<xs:complexType name="processType">
+		<xs:sequence>
+			<xs:element name="actionStatus" type="tns:actionStatusType" maxOccurs="unbounded" minOccurs="1"></xs:element>
+		</xs:sequence>
+		<xs:attribute name="startAt" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
 
-	<xsd:complexType name="actionStatusType">
-		<xsd:choice maxOccurs="unbounded">
-			<xsd:element name="actor" type="actorType" maxOccurs="1" minOccurs="0"></xsd:element>
-			<xsd:element ref="actionName"/>
-		</xsd:choice>
-		<xsd:attribute name="terminatedAt" type="xsd:string"></xsd:attribute>
-	</xsd:complexType>
+	<xs:complexType name="actionStatusType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="actor" type="tns:actorType" maxOccurs="1" minOccurs="0"></xs:element>
+			<xs:element ref="tns:actionName"/>
+		</xs:choice>
+		<xs:attribute name="terminatedAt" type="xs:string"></xs:attribute>
+	</xs:complexType>
 
-	<xsd:complexType name="followingActionsType">
-		<xsd:sequence>
-			<xsd:element ref="actionName" maxOccurs="unbounded" minOccurs="1" />
-		</xsd:sequence>
-	</xsd:complexType>
+	<xs:complexType name="followingActionsType">
+		<xs:sequence>
+			<xs:element ref="tns:actionName" maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
 
-	<xsd:complexType name="actorType">
-		<xsd:sequence>
-			<xsd:element ref="role" />
-		</xsd:sequence>
-		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
-	</xsd:complexType>
+	<xs:complexType name="actorType">
+		<xs:sequence>
+			<xs:element ref="tns:role" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
 
-	<xsd:simpleType name="typeEnumType">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="simple"/>
-			<xsd:enumeration value="process"/>
-		</xsd:restriction>
-	</xsd:simpleType>
+	<xs:simpleType name="typeEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="simple"/>
+			<xs:enumeration value="process"/>
+		</xs:restriction>
+	</xs:simpleType>
 
-</xsd:schema>
+</xs:schema>

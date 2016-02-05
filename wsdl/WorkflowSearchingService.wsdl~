@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<wsdl:definitions name="WorkflowSearchingService" xmlns:tns="http://www.w3schools.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" targetNamespace="http://www.w3schools.com">
-  <wsdl:types>
+<definitions name="WorkflowSearchingService" targetNamespace="http://pad.polito.it/WorkflowSearching" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:tns="http://pad.polito.it/WorkflowSearching" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <types>
     <xsd:schema>
-      <xsd:import namespace="http://www.w3schools.com" schemaLocation="WFInfo.xsd"/>
+      <xsd:import namespace="http://pad.polito.it/WorkflowSearching" schemaLocation="WFInfo.xsd"/>
     </xsd:schema>
-	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com">
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pad.polito.it/WorkflowSearching">
 		<xsd:element name="workflowName" type="xsd:string"></xsd:element>
 		<xsd:element name="fault" type="xsd:string"></xsd:element>
 		<xsd:element name="getWorkflowsType">
@@ -15,65 +15,65 @@
 		<xsd:element name="getProcessesType">
 			<xsd:complexType>
 				<xsd:sequence>
-					<xsd:element name="process" type="processType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+					<xsd:element name="process" type="tns:processType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
 				</xsd:sequence>
 			</xsd:complexType>
 		</xsd:element>
 	</xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="getWorkflowsRequest">
-    <wsdl:part name="emptyParam" element="tns:getWorkflowsType"/>
-  </wsdl:message>
-  <wsdl:message name="getWorkflowsResponse">
-    <wsdl:part name="listOfWorkflow" element="tns:wfInfo"/>
-  </wsdl:message>
-  <wsdl:message name="getProcessesRequest">
-    <wsdl:part name="workflowName" element="tns:workflowName"/>
-  </wsdl:message>
-  <wsdl:message name="getProcessesResponse">
-    <wsdl:part name="listOfProcess" element="tns:getProcessesType"/>
-  </wsdl:message>
-  <wsdl:message name="UnknownWorkflow">
-    <wsdl:part name="fault" element="tns:fault"/>
-  </wsdl:message>
-  <wsdl:portType name="WorkflowSearching">
-    <wsdl:operation name="getWorkflows">
-      <wsdl:input message="tns:getWorkflowsRequest"/>
-      <wsdl:output message="tns:getWorkflowsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="getProcesses">
-      <wsdl:input message="tns:getProcessesRequest"/>
-      <wsdl:output message="tns:getProcessesResponse"/>
-      <wsdl:fault message="UnknownWorkflow" name="UnknownWorkflow"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="WorkflowSearchingImplPortBinding" type="tns:WorkflowSearching">
+  </types>
+  <message name="getWorkflowsRequest">
+    <part name="emptyParam" element="tns:getWorkflowsType"/>
+  </message>
+  <message name="getWorkflowsResponse">
+    <part name="listOfWorkflow" element="tns:wfInfo"/>
+  </message>
+  <message name="getProcessesRequest">
+    <part name="workflowName" element="tns:workflowName"/>
+  </message>
+  <message name="getProcessesResponse">
+    <part name="listOfProcess" element="tns:getProcessesType"/>
+  </message>
+  <message name="UnknownWorkflow">
+    <part name="fault" element="tns:fault"/>
+  </message>
+  <portType name="WorkflowSearching">
+    <operation name="getWorkflows">
+      <input message="tns:getWorkflowsRequest"/>
+      <output message="tns:getWorkflowsResponse"/>
+    </operation>
+    <operation name="getProcesses">
+      <input message="tns:getProcessesRequest"/>
+      <output message="tns:getProcessesResponse"/>
+      <fault message="tns:UnknownWorkflow" name="UnknownWorkflow"/>
+    </operation>
+  </portType>
+  <binding name="WorkflowSearchingImplPortBinding" type="tns:WorkflowSearching">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <wsdl:operation name="getWorkflows">
+    <operation name="getWorkflows">
       <soap:operation soapAction=""/>
-      <wsdl:input>
+      <input>
         <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getProcesses">
+      </output>
+    </operation>
+    <operation name="getProcesses">
       <soap:operation soapAction=""/>
-      <wsdl:input>
+      <input>
         <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
+      </input>
+      <output>
         <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="UnknownWorkflow">
+      </output>
+      <fault name="UnknownWorkflow">
         <soap:fault name="UnknownWorkflow" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="WorkflowSearchingService">
-    <wsdl:port name="WorkflowSearchingImplPort" binding="WorkflowSearchingImplPortBinding">
+      </fault>
+    </operation>
+  </binding>
+  <service name="WorkflowSearchingService">
+    <port name="WorkflowSearchingImplPort" binding="tns:WorkflowSearchingImplPortBinding">
       <soap:address location="http://localhost:7071/wfinfo"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>
+    </port>
+  </service>
+</definitions>

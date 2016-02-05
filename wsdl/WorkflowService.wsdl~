@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="WorkflowService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.w3schools.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://www.w3schools.com">
-<wsdl:import location="WorkflowSearchingService.wsdl" namespace="http://www.w3schools.com"></wsdl:import>
+<wsdl:definitions name="WorkflowService" targetNamespace="http://pad.polito.it/Workflow" xmlns:search="http://pad.polito.it/Workflow" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pad.polito.it/Workflow" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:import location="WorkflowSearchingService.wsdl" namespace="http://pad.polito.it/Workflow"></wsdl:import>
 <wsdl:types>
-	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com">
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pad.polito.it/Workflow">
+		<xsd:element name="workflowName" type="xsd:string"></xsd:element>		
 		<xsd:element name="processID" type="xsd:string"></xsd:element>
 		<xsd:element name="out" type="xsd:string"></xsd:element>
 		<xsd:element name="takeActionType">
@@ -17,7 +18,7 @@
 		<xsd:element name="nextActionType">
 			<xsd:complexType >
 				<xsd:sequence>
-					<xsd:element ref="actionName" />
+					<xsd:element name="NextActionName" type="xsd:string"></xsd:element>
 				</xsd:sequence>
 			</xsd:complexType>
 		</xsd:element>
@@ -52,13 +53,13 @@
     </wsdl:message>
     <wsdl:message name="DifferentRoleFault">
     	<wsdl:part name="fault" element="tns:fault"></wsdl:part>
-    </wsdl:message><!--
+    </wsdl:message>
     <wsdl:message name="completeActionRequest">
     	<wsdl:part name="nextAction" element="tns:nextActionType"></wsdl:part>
     </wsdl:message>
     <wsdl:message name="completeActionResponse">
     	<wsdl:part name="out" element="tns:out"></wsdl:part>
-    </wsdl:message>-->
+    </wsdl:message>
     <wsdl:portType name="JoinWorkflow">
     	<wsdl:operation name="createProcess">
     		<wsdl:input message="tns:createProcessRequest"></wsdl:input>
@@ -75,11 +76,11 @@
     		<wsdl:output message="tns:takeActionResponse"></wsdl:output>
             <wsdl:fault name="AlreadyTakenFault" message="tns:AlreadyTakenFault"></wsdl:fault>
             <wsdl:fault name="DifferentRoleFault" message="tns:DifferentRoleFault"></wsdl:fault>
-        </wsdl:operation><!--
+        </wsdl:operation>
     	<wsdl:operation name="completeAction">
     		<wsdl:input message="tns:completeActionRequest"></wsdl:input>
     		<wsdl:output message="tns:completeActionResponse"></wsdl:output>
-        </wsdl:operation>-->
+        </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="WorkflowImplPortBinding" type="tns:JoinWorkflow">
     	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
@@ -121,7 +122,7 @@
     		<wsdl:fault name="DifferentRoleFault">
     			<soap:fault use="literal" name="DifferentRoleFault" />
     		</wsdl:fault>
-    	</wsdl:operation><!--
+    	</wsdl:operation>
     	<wsdl:operation name="completeAction">
     		<soap:operation	soapAction="" />
     		<wsdl:input>
@@ -130,10 +131,10 @@
     		<wsdl:output>
     			<soap:body use="literal" />
     		</wsdl:output>
-    	</wsdl:operation>-->
+    	</wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="WorkflowService">
-    	<wsdl:port name="WorkflowPort" binding="WorkflowImplPortBinding">
+    	<wsdl:port name="WorkflowPort" binding="tns:WorkflowImplPortBinding">
     		<soap:address location="http://localhost:7070/wfcontrol" />
     	</wsdl:port>
     </wsdl:service>
