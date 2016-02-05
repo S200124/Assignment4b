@@ -45,6 +45,12 @@ public class WorkflowType {
     protected List<Object> actionOrProcess;
     @XmlAttribute(name = "name", required = true)
     protected String name;
+    
+    public WorkflowType() {
+        if (actionOrProcess == null) {
+            actionOrProcess = new ArrayList<Object>();
+        }
+    }
 
     /**
      * Gets the value of the actionOrProcess property.
@@ -70,10 +76,12 @@ public class WorkflowType {
      * 
      */
     public List<Object> getActionOrProcess() {
-        if (actionOrProcess == null) {
-            actionOrProcess = new ArrayList<Object>();
-        }
         return this.actionOrProcess;
+    }
+    
+    public void setActionOrProcess(Object obj) {
+        if (obj != null) 
+        	this.actionOrProcess.add(obj);
     }
 
     /**

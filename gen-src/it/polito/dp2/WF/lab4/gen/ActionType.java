@@ -7,8 +7,10 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -44,18 +46,24 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ActionType {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "nestedWorkflow", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "followingActions", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "role", namespace = "http://pad.polito.it/Workflow", type = JAXBElement.class, required = false)
+    @XmlElements({
+        @XmlElement(name = "nestedWorkflow", type = String.class, required = false),
+        @XmlElement(name = "followingActions", type = FollowingActionsType.class, required = false),
+        @XmlElement(name = "role", namespace = "http://pad.polito.it/Workflow", type = String.class, required = false)
     })
-    protected List<JAXBElement<?>> roleOrFollowingActionsOrNestedWorkflow;
+    protected List<Object> roleOrFollowingActionsOrNestedWorkflow;
     @XmlAttribute(name = "name", required = true)
     protected String name;
     @XmlAttribute(name = "type", required = true)
     protected TypeEnumType type;
     @XmlAttribute(name = "automInst", required = true)
     protected boolean automInst;
+    
+    public ActionType() {
+        if (roleOrFollowingActionsOrNestedWorkflow == null) {
+            roleOrFollowingActionsOrNestedWorkflow = new ArrayList<Object>();
+        }
+    }
 
     /**
      * Gets the value of the roleOrFollowingActionsOrNestedWorkflow property.
@@ -81,11 +89,13 @@ public class ActionType {
      * 
      * 
      */
-    public List<JAXBElement<?>> getRoleOrFollowingActionsOrNestedWorkflow() {
-        if (roleOrFollowingActionsOrNestedWorkflow == null) {
-            roleOrFollowingActionsOrNestedWorkflow = new ArrayList<JAXBElement<?>>();
-        }
+    public List<Object> getRoleOrFollowingActionsOrNestedWorkflow() {
         return this.roleOrFollowingActionsOrNestedWorkflow;
+    }
+    
+    public void setRoleOrFollowingActionsOrNestedWorkflow(Object obj) {
+        if (obj != null)
+        	this.roleOrFollowingActionsOrNestedWorkflow.add(obj);
     }
 
     /**

@@ -36,6 +36,12 @@ public class FollowingActionsType {
 
     @XmlElement(namespace = "http://pad.polito.it/Workflow", required = true)
     protected List<String> actionName;
+    
+    public FollowingActionsType(){
+        if (actionName == null) {
+            actionName = new ArrayList<String>();
+        }
+    }
 
     /**
      * Gets the value of the actionName property.
@@ -60,10 +66,12 @@ public class FollowingActionsType {
      * 
      */
     public List<String> getActionName() {
-        if (actionName == null) {
-            actionName = new ArrayList<String>();
-        }
         return this.actionName;
+    }
+    
+    public void setActionName(String str) {
+    	if(str != null)
+    		this.actionName.add(str);
     }
 
 }

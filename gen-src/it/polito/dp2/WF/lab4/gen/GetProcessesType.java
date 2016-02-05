@@ -36,6 +36,12 @@ import javax.xml.bind.annotation.XmlType;
 public class GetProcessesType {
 
     protected List<ProcessType> process;
+    
+    public GetProcessesType(){
+        if (process == null) {
+            process = new ArrayList<ProcessType>();
+        }
+    }
 
     /**
      * Gets the value of the process property.
@@ -60,10 +66,11 @@ public class GetProcessesType {
      * 
      */
     public List<ProcessType> getProcess() {
-        if (process == null) {
-            process = new ArrayList<ProcessType>();
-        }
         return this.process;
+    }
+    
+    public void setProcess(ProcessType pt) {
+        this.process.add(pt);
     }
 
 }

@@ -70,7 +70,10 @@
 
 	<target name="compile-wsdl" depends="init" description="Compile WSDL and generate bindings"> 
 	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep"/>
+	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowService.wsdl"/>
+	    </exec>
+	    <exec executable="wsimport">
+	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowSearchingService.wsdl"/>
 	    </exec>
 	</target>
 

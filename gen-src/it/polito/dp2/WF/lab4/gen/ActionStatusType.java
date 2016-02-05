@@ -45,6 +45,12 @@ public class ActionStatusType {
     protected List<Object> actorOrActionName;
     @XmlAttribute(name = "terminatedAt")
     protected String terminatedAt;
+    
+    public ActionStatusType() {
+        if (actorOrActionName == null) {
+            actorOrActionName = new ArrayList<Object>();
+        }
+    }
 
     /**
      * Gets the value of the actorOrActionName property.
@@ -70,10 +76,12 @@ public class ActionStatusType {
      * 
      */
     public List<Object> getActorOrActionName() {
-        if (actorOrActionName == null) {
-            actorOrActionName = new ArrayList<Object>();
-        }
         return this.actorOrActionName;
+    }
+    
+    public void setActorOrActionName(Object obj) {
+    	if(obj != null)
+    		this.actorOrActionName.add(obj);
     }
 
     /**

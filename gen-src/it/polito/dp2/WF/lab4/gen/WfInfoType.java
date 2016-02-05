@@ -34,6 +34,12 @@ import javax.xml.bind.annotation.XmlType;
 public class WfInfoType {
 
     protected List<WorkflowType> workflow;
+    
+    public WfInfoType() {
+        if (workflow == null) {
+            workflow = new ArrayList<WorkflowType>();
+        }
+    }
 
     /**
      * Gets the value of the workflow property.
@@ -58,10 +64,12 @@ public class WfInfoType {
      * 
      */
     public List<WorkflowType> getWorkflow() {
-        if (workflow == null) {
-            workflow = new ArrayList<WorkflowType>();
-        }
         return this.workflow;
+    }
+    
+    public void setWorkflow(WorkflowType wt) {
+        if (wt != null)
+        	this.workflow.add(wt);
     }
 
 }

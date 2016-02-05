@@ -24,16 +24,14 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ActionTypeFollowingActions_QNAME = new QName("", "followingActions");
-    private final static QName _ActionTypeNestedWorkflow_QNAME = new QName("", "nestedWorkflow");
     private final static QName _ActionName_QNAME = new QName("http://pad.polito.it/Workflow", "actionName");
     private final static QName _Role_QNAME = new QName("http://pad.polito.it/Workflow", "role");
     private final static QName _Fault_QNAME = new QName("http://pad.polito.it/Workflow", "fault");
-    private final static QName _Out_QNAME = new QName("http://pad.polito.it/Workflow", "out");
     private final static QName _WfInfo_QNAME = new QName("http://pad.polito.it/Workflow", "wfInfo");
     private final static QName _Process_QNAME = new QName("http://pad.polito.it/Workflow", "process");
     private final static QName _WorkflowName_QNAME = new QName("http://pad.polito.it/Workflow", "workflowName");
-    private final static QName _ProcessID_QNAME = new QName("http://pad.polito.it/Workflow", "processID");
+    private final static QName _ActionTypeFollowingActions_QNAME = new QName("", "followingActions");
+    private final static QName _ActionTypeNestedWorkflow_QNAME = new QName("", "nestedWorkflow");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: it.polito.dp2.WF.lab4.gen
@@ -64,22 +62,6 @@ public class ObjectFactory {
      */
     public GetWorkflowsType createGetWorkflowsType() {
         return new GetWorkflowsType();
-    }
-
-    /**
-     * Create an instance of {@link NextActionType }
-     * 
-     */
-    public NextActionType createNextActionType() {
-        return new NextActionType();
-    }
-
-    /**
-     * Create an instance of {@link TakeActionType }
-     * 
-     */
-    public TakeActionType createTakeActionType() {
-        return new TakeActionType();
     }
 
     /**
@@ -131,24 +113,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FollowingActionsType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "followingActions", scope = ActionType.class)
-    public JAXBElement<FollowingActionsType> createActionTypeFollowingActions(FollowingActionsType value) {
-        return new JAXBElement<FollowingActionsType>(_ActionTypeFollowingActions_QNAME, FollowingActionsType.class, ActionType.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "nestedWorkflow", scope = ActionType.class)
-    public JAXBElement<String> createActionTypeNestedWorkflow(String value) {
-        return new JAXBElement<String>(_ActionTypeNestedWorkflow_QNAME, String.class, ActionType.class, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
@@ -173,15 +137,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://pad.polito.it/Workflow", name = "fault")
     public JAXBElement<String> createFault(String value) {
         return new JAXBElement<String>(_Fault_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://pad.polito.it/Workflow", name = "out")
-    public JAXBElement<String> createOut(String value) {
-        return new JAXBElement<String>(_Out_QNAME, String.class, null, value);
     }
 
     /**
@@ -212,12 +167,21 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FollowingActionsType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "followingActions", scope = ActionType.class)
+    public JAXBElement<FollowingActionsType> createActionTypeFollowingActions(FollowingActionsType value) {
+        return new JAXBElement<FollowingActionsType>(_ActionTypeFollowingActions_QNAME, FollowingActionsType.class, ActionType.class, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://pad.polito.it/Workflow", name = "processID")
-    public JAXBElement<String> createProcessID(String value) {
-        return new JAXBElement<String>(_ProcessID_QNAME, String.class, null, value);
+    @XmlElementDecl(namespace = "", name = "nestedWorkflow", scope = ActionType.class)
+    public JAXBElement<String> createActionTypeNestedWorkflow(String value) {
+        return new JAXBElement<String>(_ActionTypeNestedWorkflow_QNAME, String.class, ActionType.class, value);
     }
 
 }

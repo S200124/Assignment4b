@@ -29,7 +29,7 @@ public enum TypeEnumType {
     SIMPLE("simple"),
     @XmlEnumValue("process")
     PROCESS("process");
-    private final String value;
+    private String value;
 
     TypeEnumType(String v) {
         value = v;

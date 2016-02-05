@@ -40,6 +40,12 @@ public class ProcessType {
     protected List<ActionStatusType> actionStatus;
     @XmlAttribute(name = "startAt", required = true)
     protected String startAt;
+    
+    public ProcessType(){
+        if (actionStatus == null) {
+            actionStatus = new ArrayList<ActionStatusType>();
+        }
+    }
 
     /**
      * Gets the value of the actionStatus property.
@@ -64,10 +70,12 @@ public class ProcessType {
      * 
      */
     public List<ActionStatusType> getActionStatus() {
-        if (actionStatus == null) {
-            actionStatus = new ArrayList<ActionStatusType>();
-        }
         return this.actionStatus;
+    }
+    
+    public void setActionStatus(ActionStatusType ast) {
+    	if(ast != null)
+    		this.actionStatus.add(ast);
     }
 
     /**
