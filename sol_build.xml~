@@ -10,6 +10,8 @@
 	<property name="gen.dir" location="${basedir}/gen-src" />
 	<property name="package" value="it.polito.dp2.WF.lab4.gen"/>
 	<property name="WSDL" value="${lab4.location}/wsdl"/>
+	<property name="URL" value="http://localhost:${PORT}/WorkflowInfoService"/>
+	<property name="WSDL_URL" value="${URL}?wsdl"/>
 
 	<property name="debug" value="true" />
 	<property name="debuglevel" value="source,lines,vars" />
@@ -45,5 +47,27 @@
 				</classpath>
 		</javac>
 	</target>
+
+	<target name="compile-wsdl" depends="init" description="Compile WSDL and generate bindings">
+	    <echo message = "${WSDL_URL}"/> 
+	    <exec executable="wsimport">
+	        <arg line="${custom.option} -d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL_URL}"/>
+	    </exec>
+	</target>   
+	
+	<!-- Target buildClient
+	<target name="buildClient" depends="init, compile-wsdl" description="Build your solution">
+		<echo>Building the submitted solution (if needed)...</echo>
+		<javac destdir="${build.dir}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
+			<src path="${src.dir}"/>
+			<src path="${gen.dir}"/>
+			<include name="it/polito/dp2/WF/sol3/**" />
+			<include name="it/polito/dp2/WF/lab3/*.java" />
+			<classpath>
+				<path refid="sol.classpath" />
+			</classpath>
+		</javac>
+		<echo>Done.</echo>
+	</target> -->
 
 </project>
