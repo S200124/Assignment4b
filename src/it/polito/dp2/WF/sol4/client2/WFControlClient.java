@@ -34,7 +34,7 @@ public class WFControlClient {
 			
 			if(proxy != null)
 			{
-				System.out.println("Ready to invoke remote operation 2...");
+				System.out.println("Ready to invoke remote operation...");
 				try {
 					proxy.createProcess(args[1]);
 				} catch (SystemErrorException e) {
@@ -43,6 +43,7 @@ public class WFControlClient {
 					statusCode = 1;
 				}
 				statusCode = 0;
+				System.out.println("...done!");
 			}
 		}
 		System.exit(statusCode);

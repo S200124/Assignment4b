@@ -16,13 +16,13 @@ public class WorkflowServer {
 		WorkflowManager wfm;
 		try {
 			wfm = new WorkflowManager();
-			
+			/*
 			for(WorkflowType wt:wfm.getWorkflows())
 				System.out.println(wt.getName());
 			
 			for(ProcessType pt:wfm.getProcesses())
 				System.out.println(pt.getStartAt());
-			
+			*/
 			/*
 			WorkflowSearchingImpl wsi = new WorkflowSearchingImpl(wfm);
 			WorkflowManagingImpl wmi = new WorkflowManagingImpl(wfm);

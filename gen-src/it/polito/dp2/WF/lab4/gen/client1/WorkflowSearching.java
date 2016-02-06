@@ -28,23 +28,6 @@ public interface WorkflowSearching {
     /**
      * 
      * @return
-     *     returns java.util.List<it.polito.dp2.WF.lab4.gen.client1.ProcessType>
-     * @throws SystemErrorException
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getProcesses", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client1.GetProcesses")
-    @ResponseWrapper(localName = "getProcessesResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client1.GetProcessesResponse")
-    @Action(input = "http://pad.polito.it/ws/Workflow/WorkflowSearching/getProcessesRequest", output = "http://pad.polito.it/ws/Workflow/WorkflowSearching/getProcessesResponse", fault = {
-        @FaultAction(className = SystemErrorException.class, value = "http://pad.polito.it/ws/Workflow/WorkflowSearching/getProcesses/Fault/SystemError_Exception")
-    })
-    public List<ProcessType> getProcesses()
-        throws SystemErrorException
-    ;
-
-    /**
-     * 
-     * @return
      *     returns java.util.List<it.polito.dp2.WF.lab4.gen.client1.WorkflowType>
      * @throws SystemErrorException
      */
@@ -56,6 +39,23 @@ public interface WorkflowSearching {
         @FaultAction(className = SystemErrorException.class, value = "http://pad.polito.it/ws/Workflow/WorkflowSearching/getWorkflows/Fault/SystemError_Exception")
     })
     public List<WorkflowType> getWorkflows()
+        throws SystemErrorException
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<it.polito.dp2.WF.lab4.gen.client1.ProcessType>
+     * @throws SystemErrorException
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getProcesses", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client1.GetProcesses")
+    @ResponseWrapper(localName = "getProcessesResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client1.GetProcessesResponse")
+    @Action(input = "http://pad.polito.it/ws/Workflow/WorkflowSearching/getProcessesRequest", output = "http://pad.polito.it/ws/Workflow/WorkflowSearching/getProcessesResponse", fault = {
+        @FaultAction(className = SystemErrorException.class, value = "http://pad.polito.it/ws/Workflow/WorkflowSearching/getProcesses/Fault/SystemError_Exception")
+    })
+    public List<ProcessType> getProcesses()
         throws SystemErrorException
     ;
 

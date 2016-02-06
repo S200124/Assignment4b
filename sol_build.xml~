@@ -46,7 +46,7 @@
 
 	<target name="generate-artifacts-client2" unless="generate-artifacts.notRequired" depends="init">
 	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${packageClient2}' -s '${gen.dir}' -keep ${WSDL_URL2}suca"/>
+	        <arg line="-d '${build.dir}' -p '${packageClient2}' -s '${gen.dir}' -keep ${WSDL_URL2}"/>
 	    </exec>
 	</target>
 
@@ -59,7 +59,9 @@
 			target="${target}"
 			includeantruntime="false">
 				<src path="${src.dir}" />
-				<include name="it/polito/dp2/WF/lab1/WFInfo.java" />
+				<include name="it/polito/dp2/WF/sol4/server/**" />
+				<include name="it/polito/dp2/WF/lab4/*.java" />
+				<include name="it/polito/dp2/WF/lab1/*.java" />
 				<classpath>
 					<path refid="WF.classpath" />
 				</classpath>
@@ -72,6 +74,7 @@
 			<src path="${src.dir}"/>
 			<src path="${gen.dir}"/>
 			<include name="it/polito/dp2/WF/sol4/client1/**" />
+			<include name="it/polito/dp2/WF/sol4/client2/**" />
 			<include name="it/polito/dp2/WF/lab4/*.java" />
 			<include name="it/polito/dp2/WF/lab1/*.java" />
 			<classpath>
