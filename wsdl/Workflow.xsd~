@@ -22,7 +22,7 @@
 	<xsd:complexType name="actionStatusType">
 		<xsd:sequence>
 			<xsd:element name="actor" type="tns:actorType" maxOccurs="1" minOccurs="0"></xsd:element>
-			<xsd:element name="actionName" type="xsd:string"></xsd:element>
+			<xsd:element name="action" type="tns:actionType"></xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="terminatedAt" type="xsd:string"></xsd:attribute>
 	</xsd:complexType>
