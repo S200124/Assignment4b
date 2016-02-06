@@ -1,8 +1,5 @@
 package it.polito.dp2.WF.sol4.server;
 
-import java.text.*;
-import java.util.Calendar;
-
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -12,7 +9,6 @@ import javax.xml.ws.ResponseWrapper;
 
 import it.polito.dp2.WF.lab4.gen.ActionStatusType;
 import it.polito.dp2.WF.lab4.gen.AlreadyTakenOrDifferentRoleError_Exception;
-import it.polito.dp2.WF.lab4.gen.ProcessType;
 import it.polito.dp2.WF.lab4.gen.SystemError_Exception;
 import it.polito.dp2.WF.lab4.gen.TakenOverActionType;
 import it.polito.dp2.WF.lab4.gen.WorkflowManaging;
