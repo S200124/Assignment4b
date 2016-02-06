@@ -9,6 +9,13 @@ import it.polito.dp2.WF.lab4.gen.*;
 
 @WebService(serviceName="WorkflowService", portName="WorkflowPort", targetNamespace="http://pad.polito.it/Workflow", endpointInterface="it.polito.dp2.WF.lab4.gen.JoinWorkflow")
 public class JoinWorkflowImpl implements JoinWorkflow {
+	
+	private WfInfoType workflows;
+	
+	public JoinWorkflowImpl(WfInfoType wf) {
+		super();
+		this.workflows = wf;
+	}
 
 	@Override
 	@WebMethod
@@ -16,8 +23,10 @@ public class JoinWorkflowImpl implements JoinWorkflow {
 	public String createProcess(
 			@WebParam(name = "workflowName", targetNamespace = "http://pad.polito.it/Workflow", partName = "workflowName") String workflowName)
 			throws SystemFault {
-		// TODO Auto-generated method stub
-		return null;
+		for(WorkflowType wft:workflows.getWorkflow())
+			if(wft.getName() == workflowName)
+				return wft.getName() + " WORKS!!!";
+		return "Not works...";
 	}
 
 	@Override

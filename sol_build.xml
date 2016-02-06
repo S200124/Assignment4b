@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="WF-4" default="build-server" basedir=".">
+	<!-- The location to be used for class files -->
+	<property name="build.dir" location="${basedir}/build" />
+	<!-- The location for source files -->
+	<property name="src.dir" location="${basedir}/src" />
+	<!-- The location for jar files -->
+	<property name="lib.dir" location="${basedir}/lib" />
+	<property name="gen.dir" location="${basedir}/gen-src" />
+	<property name="package" value="it.polito.dp2.WF.lab4.gen"/>
+	<property name="WSDL" value="${lab4.location}/wsdl"/>
+
+	<target name="build-server" depends="init" description="Compile WSDL and generate bindings."> 
+	    <exec executable="wsimport">
+	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowService.wsdl"/>
+	    </exec>
+	    <exec executable="wsimport">
+	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowSearchingService.wsdl"/>
+	    </exec>
+	</target>
+</project>

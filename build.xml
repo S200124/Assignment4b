@@ -17,9 +17,6 @@
 	<property name="src.dir" location="${lab4.location}/src" />
 	<!-- The location for jar files -->
 	<property name="lib.dir" location="${lab4.location}/lib" />
-	<property name="gen.dir" location="${lab4.location}/gen-src" />
-	<property name="package" value="it.polito.dp2.WF.lab4.gen"/>
-	<property name="WSDL" value="${lab4.location}/wsdl"/>
 	
 	<!-- The default test case -->
 	<property name="testcase" value="0" />
@@ -67,15 +64,6 @@
 	<path id="client.classpath">
 		<pathelement path="${build.dir}" />
 	</path>
-
-	<target name="compile-wsdl" depends="init" description="Compile WSDL and generate bindings"> 
-	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowService.wsdl"/>
-	    </exec>
-	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowSearchingService.wsdl"/>
-	    </exec>
-	</target>
 
 	<target name="setseed" unless="seed">
 		<tstamp>
