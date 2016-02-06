@@ -42,8 +42,8 @@ public interface WorkflowManaging {
      * @param takenOverAction
      * @return
      *     returns it.polito.dp2.WF.lab4.gen.server.ActionStatusType
-     * @throws AlreadyTakenOrDifferentRoleError_Exception
      * @throws SystemError_Exception
+     * @throws AlreadyTakenOrDifferentRoleError_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
