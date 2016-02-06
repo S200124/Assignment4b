@@ -3,10 +3,6 @@ package it.polito.dp2.WF.sol4.client1;
 import it.polito.dp2.WF.lab4.gen.*;
 
 import java.net.*;
-import java.util.*;
-import javax.xml.ws.*;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 
 
 public class Client {

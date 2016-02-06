@@ -1,11 +1,14 @@
 package it.polito.dp2.WF.sol4.client1;
 
+import it.polito.dp2.WF.lab4.gen.ActionType;
+import it.polito.dp2.WF.lab4.gen.WorkflowType;
+
 public class ActionReader implements it.polito.dp2.WF.ActionReader {
 	
-	private Action action;
-	private Workflow workflow;
+	private ActionType action;
+	private WorkflowType workflow;
 	
-	public ActionReader(Action act, Workflow wf)
+	public ActionReader(ActionType act, WorkflowType wf)
 	{
 		action = act;
 		workflow = wf;
@@ -32,7 +35,7 @@ public class ActionReader implements it.polito.dp2.WF.ActionReader {
 
 	@Override
 	public boolean isAutomaticallyInstantiated() {
-		return action.isAutomaticallyInstantiated();
+		return action.isAutomInst();
 	}
 
 }

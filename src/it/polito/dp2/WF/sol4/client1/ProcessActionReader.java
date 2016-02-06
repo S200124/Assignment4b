@@ -1,11 +1,14 @@
 package it.polito.dp2.WF.sol4.client1;
 
+import it.polito.dp2.WF.lab4.gen.ActionType;
+import it.polito.dp2.WF.lab4.gen.WorkflowType;
+
 
 public class ProcessActionReader extends ActionReader {
 
-	private Workflow workflow;
+	private WorkflowType workflow;
 	
-	public ProcessActionReader(Action act, Workflow wf) {
+	public ProcessActionReader(ActionType act, WorkflowType wf) {
 		super(act, wf);
 		workflow = wf;
 	}

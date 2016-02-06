@@ -1,13 +1,16 @@
 package it.polito.dp2.WF.sol4.client1;
 
+import it.polito.dp2.WF.lab4.gen.ActionType;
+import it.polito.dp2.WF.lab4.gen.WorkflowType;
+
 import java.util.*;
 
 
 public class WorkflowReader implements it.polito.dp2.WF.WorkflowReader {
 
-	private Workflow workflow;
+	private WorkflowType workflow;
 	
-	public WorkflowReader(Workflow wf)
+	public WorkflowReader(WorkflowType wf)
 	{
 		workflow = wf;
 	}
@@ -20,7 +23,7 @@ public class WorkflowReader implements it.polito.dp2.WF.WorkflowReader {
 	public Set<it.polito.dp2.WF.ActionReader> getActions() {
 		Set<it.polito.dp2.WF.ActionReader> ret = new HashSet<it.polito.dp2.WF.ActionReader>();
 		
-		for(Action act:WorkFlowModel.allActions(workflow))
+		for(ActionType act:WorkFlowModel.allActions(workflow))
 			ret.add(new ActionReader(act, workflow));
 		
 		return ret;

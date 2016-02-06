@@ -1,76 +1,95 @@
 package it.polito.dp2.WF.sol4.client1;
 
+import it.polito.dp2.WF.lab4.gen.*;
+
 import java.net.*;
 import java.util.*;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.ws.Holder;
-
 public final class WorkFlowModel {
 	
-	private WorkFlowModel() {}
+	private static String targetURL;
 	
-	public static List<Workflow> allWorkflow()
+	private WorkFlowModel() {
+		targetURL = System.getProperty("it.polito.dp2.WF.lab4.URL");
+		if(targetURL.isEmpty())
+			targetURL = "http://localhost:7071/wfinfo?wsdl";
+	}
+	
+	public static List<WorkflowType> allWorkflow()
 	{
 		URL url;
 		try {
-			url = new URL(System.getProperty("it.polito.dp2.WF.lab4.URL"));
+			url = new URL(targetURL);
 		} catch (MalformedURLException e) {
 			url = null;
 		}
 		
 		if(url != null)
 		{
-			WorkflowInfoService service = new WorkflowInfoService(url);
-			WorkflowInfo proxy = service.getWorkflowInfoPort();
-			
-			Holder<XMLGregorianCalendar> hx = new Holder<XMLGregorianCalendar>();
-			List<String> ls = new ArrayList<String>();
-			Holder<List<Workflow>> hlw = new Holder<List<Workflow>>();
-			Holder<List<String>> hls = new Holder<List<String>>();
-			
-			proxy.getWorkflowNames(hx, hls);
-			for(String name:hls.value)
-				ls.add(name);
+			WorkflowSearching_Service service = new WorkflowSearching_Service(url);
+			WorkflowSearching proxy = service.getWorkflowSearchingPort();
 			
 			try {
-				proxy.getWorkflows(ls, hx, hlw);
-				return hlw.value;
-			} catch (UnknownNames_Exception e) {
-				
+				return proxy.getWorkflows();
+			} catch (SystemError_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
 			}
 		}
 		return null;
 	}
 	
-	public static List<Process> allProcesses()
+	public static List<ProcessType> allProcesses()
 	{	
-		return (new ArrayList<Process>());
+		URL url;
+		try {
+			url = new URL(targetURL);
+		} catch (MalformedURLException e) {
+			url = null;
+		}
+		
+		if(url != null)
+		{
+			WorkflowSearching_Service service = new WorkflowSearching_Service(url);
+			WorkflowSearching proxy = service.getWorkflowSearchingPort();
+			
+			try {
+				return proxy.getProcesses();
+			} catch (SystemError_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return null;
 	}
 	
-	public static List<Process> whereProcesses(String workflowName)
+	/*public static List<Process> whereProcesses(String workflowName)
 	{
 		return (new ArrayList<Process>());
-	}
+	}*/
 	
-	public static Workflow findWorkflow(List<Workflow> allWF, String name)
+	public static WorkflowType findWorkflow(List<WorkflowType> allWF, String name)
 	{	
-		for(Workflow wf:allWF)
+		for(WorkflowType wf:allWF)
 			if(wf.getName().trim().equals(name))
 				return wf;
 		
 		return null;
 	}
 
-	public static List<Action> allActions(Workflow wf)
+	public static List<ActionType> allActions(WorkflowType wf)
 	{
-		return wf.getAction();
+		if(wf != null)
+			return wf.getAction();
+		return null;
 	}
 
-	public static Action findAction(Workflow wf, String name)
+	public static ActionType findAction(WorkflowType wf, String name)
 	{	
 		if(wf != null)
-			for(Action act:allActions(wf))
+			for(ActionType act:allActions(wf))
 				if(act.getName().trim().equals(name))
 					return act;
 		

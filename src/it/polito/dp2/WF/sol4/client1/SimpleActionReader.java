@@ -1,13 +1,16 @@
 package it.polito.dp2.WF.sol4.client1;
 
+import it.polito.dp2.WF.lab4.gen.ActionType;
+import it.polito.dp2.WF.lab4.gen.WorkflowType;
+
 import java.util.*;
 
 public class SimpleActionReader extends ActionReader {
 
-	private Action action;
-	private Workflow workflow;
+	private ActionType action;
+	private WorkflowType workflow;
 	
-	public SimpleActionReader(Action act, Workflow wf) {
+	public SimpleActionReader(ActionType act, WorkflowType wf) {
 		super(act, wf);
 		action = act;
 		workflow = wf;
@@ -16,8 +19,8 @@ public class SimpleActionReader extends ActionReader {
 	public Set<ActionReader> getPossibleNextActions() {
 		Set<ActionReader> ret = new HashSet<ActionReader>();
 		
-		for(String name:action.getNextAction())
-			for(Action act:WorkFlowModel.allActions(workflow))
+		for(String name:action.getFollowingActions().getActionName())
+			for(ActionType act:WorkFlowModel.allActions(workflow))
 				if(act.getName().trim().equals(name))
 					ret.add(new ActionReader(act, workflow));
 		

@@ -1,14 +1,16 @@
 package it.polito.dp2.WF.sol4.client1;
 
+import it.polito.dp2.WF.lab4.gen.WorkflowType;
+
 import java.util.*;
 
 
-public class WorkflowMonitor implements it.polito.dp2.WF.WorkflowMonitor, it.polito.dp2.WF.lab3.Refreshable {
+public class WorkflowMonitor implements it.polito.dp2.WF.WorkflowMonitor {
 	
-	private List<Workflow> wfl;
+	private List<WorkflowType> wfl;
 	
 	public WorkflowMonitor() {
-		refresh();
+		wfl = WorkFlowModel.allWorkflow();
 	}
 
 	@Override
@@ -25,15 +27,10 @@ public class WorkflowMonitor implements it.polito.dp2.WF.WorkflowMonitor, it.pol
 	public Set<it.polito.dp2.WF.WorkflowReader> getWorkflows() {
 		Set<it.polito.dp2.WF.WorkflowReader> ret = new HashSet<it.polito.dp2.WF.WorkflowReader>();
 		
-		for(Workflow wf:wfl)
+		for(WorkflowType wf:wfl)
 			ret.add(new WorkflowReader(wf));
 		
 		return ret;
-	}
-
-	@Override
-	public void refresh() {
-		wfl = WorkFlowModel.allWorkflow();
 	}
 	
 }

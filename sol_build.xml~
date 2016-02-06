@@ -8,10 +8,10 @@
 	<!-- The location for jar files -->
 	<property name="lib.dir" location="${basedir}/lib" />
 	<property name="gen.dir" location="${basedir}/gen-src" />
-	<property name="package" value="it.polito.dp2.WF.lab4.gen"/>
+	<property name="packageServer" value="it.polito.dp2.WF.lab4.gen.server"/>
+	<property name="packageClient1" value="it.polito.dp2.WF.lab4.gen.client1"/>
+	<property name="packageClient2" value="it.polito.dp2.WF.lab4.gen.client2"/>
 	<property name="WSDL" value="${lab4.location}/wsdl"/>
-	<property name="URL" value="http://localhost:${PORT}/WorkflowInfoService"/>
-	<property name="WSDL_URL" value="${URL}?wsdl"/>
 
 	<property name="debug" value="true" />
 	<property name="debuglevel" value="source,lines,vars" />
@@ -26,13 +26,19 @@
 		<mkdir dir="${gen.dir}" />
 	</target>
 
-	<target name="generate-artifacts" unless="generate-artifacts.notRequired" depends="init">
+	<target name="generate-artifacts-server" unless="generate-artifacts.notRequired" depends="init">
 	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/Workflow.wsdl"/>
+	        <arg line="-d '${build.dir}' -p '${packageServer}' -s '${gen.dir}' -keep ${WSDL}/Workflow.wsdl"/>
 	    </exec>
 	</target>
 
-	<target name="build-server" depends="init, generate-artifacts" description="Build the sources">
+	<target name="generate-artifacts-client1" unless="generate-artifacts.notRequired" depends="init">
+	    <exec executable="wsimport">
+	        <arg line="-d '${build.dir}' -p '${packageClient1}' -s '${gen.dir}' -keep ${WSDL}/Workflow.wsdl"/>
+	    </exec>
+	</target>
+
+	<target name="build-server" depends="init, generate-artifacts-server" description="Build the sources">
 		<javac 
 			destdir="${build.dir}"
 			debug="${debug}"
@@ -47,27 +53,5 @@
 				</classpath>
 		</javac>
 	</target>
-
-	<target name="compile-wsdl" depends="init" description="Compile WSDL and generate bindings">
-	    <echo message = "${WSDL_URL}"/> 
-	    <exec executable="wsimport">
-	        <arg line="${custom.option} -d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL_URL}"/>
-	    </exec>
-	</target>   
-	
-	<!-- Target buildClient
-	<target name="buildClient" depends="init, compile-wsdl" description="Build your solution">
-		<echo>Building the submitted solution (if needed)...</echo>
-		<javac destdir="${build.dir}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
-			<src path="${src.dir}"/>
-			<src path="${gen.dir}"/>
-			<include name="it/polito/dp2/WF/sol3/**" />
-			<include name="it/polito/dp2/WF/lab3/*.java" />
-			<classpath>
-				<path refid="sol.classpath" />
-			</classpath>
-		</javac>
-		<echo>Done.</echo>
-	</target> -->
 
 </project>
