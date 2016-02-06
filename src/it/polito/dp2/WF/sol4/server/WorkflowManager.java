@@ -1,7 +1,7 @@
 package it.polito.dp2.WF.sol4.server;
 
 import it.polito.dp2.WF.*;
-import it.polito.dp2.WF.lab4.gen.*;
+import it.polito.dp2.WF.lab4.gen.server.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

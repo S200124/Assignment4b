@@ -7,14 +7,14 @@ import javax.jws.WebService;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
-import it.polito.dp2.WF.lab4.gen.ActionStatusType;
-import it.polito.dp2.WF.lab4.gen.AlreadyTakenOrDifferentRoleError_Exception;
-import it.polito.dp2.WF.lab4.gen.SystemError_Exception;
-import it.polito.dp2.WF.lab4.gen.TakenOverActionType;
-import it.polito.dp2.WF.lab4.gen.WorkflowManaging;
-import it.polito.dp2.WF.lab4.gen.WorkflowType;
+import it.polito.dp2.WF.lab4.gen.server.ActionStatusType;
+import it.polito.dp2.WF.lab4.gen.server.AlreadyTakenOrDifferentRoleError_Exception;
+import it.polito.dp2.WF.lab4.gen.server.SystemError_Exception;
+import it.polito.dp2.WF.lab4.gen.server.TakenOverActionType;
+import it.polito.dp2.WF.lab4.gen.server.WorkflowManaging;
+import it.polito.dp2.WF.lab4.gen.server.WorkflowType;
 
-@WebService(serviceName="WorkflowManaging", portName="WorkflowManagingPort", targetNamespace="http://pad.polito.it/ws/Workflow/", endpointInterface="it.polito.dp2.WF.lab4.gen.WorkflowManaging")
+@WebService(serviceName="WorkflowManaging", portName="WorkflowManagingPort", targetNamespace="http://pad.polito.it/ws/Workflow/", endpointInterface="it.polito.dp2.WF.lab4.gen.server.WorkflowManaging")
 public class WorkflowManagingImpl implements WorkflowManaging {
 
 	private WorkflowManager manager;

@@ -1,6 +1,6 @@
 package it.polito.dp2.WF.sol4.client1;
 
-import it.polito.dp2.WF.lab4.gen.*;
+import it.polito.dp2.WF.lab4.gen.client1.*;
 
 import java.net.*;
 
@@ -30,17 +30,16 @@ public class Client {
 			try {
 				for(WorkflowType wf:proxy.getWorkflows())
 					System.out.println(wf.getName());
-			} catch (SystemError_Exception e) {
+			} catch (SystemErrorException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			System.out.println("Ready to invoke remote operation 2...");
 			try {
-				
 				for(ProcessType pt:proxy.getProcesses())
 					System.out.println(pt.getStartAt());
-			} catch (SystemError_Exception e) {
+			} catch (SystemErrorException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

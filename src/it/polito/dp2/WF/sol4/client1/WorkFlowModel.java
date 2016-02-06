@@ -1,6 +1,6 @@
 package it.polito.dp2.WF.sol4.client1;
 
-import it.polito.dp2.WF.lab4.gen.*;
+import it.polito.dp2.WF.lab4.gen.client1.*;
 
 import java.net.*;
 import java.util.*;
@@ -31,7 +31,7 @@ public final class WorkFlowModel {
 			
 			try {
 				return proxy.getWorkflows();
-			} catch (SystemError_Exception e) {
+			} catch (SystemErrorException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
@@ -56,7 +56,7 @@ public final class WorkFlowModel {
 			
 			try {
 				return proxy.getProcesses();
-			} catch (SystemError_Exception e) {
+			} catch (SystemErrorException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;

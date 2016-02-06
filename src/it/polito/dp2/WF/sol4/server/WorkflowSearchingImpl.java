@@ -8,12 +8,12 @@ import javax.jws.WebService;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
-import it.polito.dp2.WF.lab4.gen.ProcessType;
-import it.polito.dp2.WF.lab4.gen.SystemError_Exception;
-import it.polito.dp2.WF.lab4.gen.WorkflowSearching;
-import it.polito.dp2.WF.lab4.gen.WorkflowType;
+import it.polito.dp2.WF.lab4.gen.server.ProcessType;
+import it.polito.dp2.WF.lab4.gen.server.SystemError_Exception;
+import it.polito.dp2.WF.lab4.gen.server.WorkflowSearching;
+import it.polito.dp2.WF.lab4.gen.server.WorkflowType;
 
-@WebService(serviceName="WorkflowSearching", portName="WorkflowSearchingPort", targetNamespace="http://pad.polito.it/ws/Workflow/", endpointInterface="it.polito.dp2.WF.lab4.gen.WorkflowSearching")
+@WebService(serviceName="WorkflowSearching", portName="WorkflowSearchingPort", targetNamespace="http://pad.polito.it/ws/Workflow/", endpointInterface="it.polito.dp2.WF.lab4.gen.server.WorkflowSearching")
 public class WorkflowSearchingImpl implements WorkflowSearching {
 
 	private WorkflowManager manager;

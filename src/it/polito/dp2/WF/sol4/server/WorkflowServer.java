@@ -1,7 +1,7 @@
 package it.polito.dp2.WF.sol4.server;
 
-import it.polito.dp2.WF.lab4.gen.ProcessType;
-import it.polito.dp2.WF.lab4.gen.WorkflowType;
+import it.polito.dp2.WF.lab4.gen.server.ProcessType;
+import it.polito.dp2.WF.lab4.gen.server.WorkflowType;
 
 import java.util.concurrent.Executors;
 

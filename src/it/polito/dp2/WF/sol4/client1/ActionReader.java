@@ -1,7 +1,7 @@
 package it.polito.dp2.WF.sol4.client1;
 
-import it.polito.dp2.WF.lab4.gen.ActionType;
-import it.polito.dp2.WF.lab4.gen.WorkflowType;
+import it.polito.dp2.WF.lab4.gen.client1.ActionType;
+import it.polito.dp2.WF.lab4.gen.client1.WorkflowType;
 
 public class ActionReader implements it.polito.dp2.WF.ActionReader {
 	

@@ -11,7 +11,9 @@
 	<property name="packageServer" value="it.polito.dp2.WF.lab4.gen.server"/>
 	<property name="packageClient1" value="it.polito.dp2.WF.lab4.gen.client1"/>
 	<property name="packageClient2" value="it.polito.dp2.WF.lab4.gen.client2"/>
-	<property name="WSDL" value="${lab4.location}/wsdl"/>
+	<property name="WSDL" value="${basedir}/wsdl"/>
+	<property name="WSDL_URL1" value="http://localhost:7071/wfinfo?wsdl"/>
+	<property name="WSDL_URL2" value="http://localhost:7070/wfcontrol?wsdl"/>
 
 	<property name="debug" value="true" />
 	<property name="debuglevel" value="source,lines,vars" />
@@ -19,6 +21,10 @@
 	<property name="source" value="1.7" />
 
 	<path id="WF.classpath">
+		<pathelement location="${lib.dir}/WF.jar"/>
+	</path>
+
+	<path id="sol.classpath">
 		<pathelement location="${lib.dir}/WF.jar"/>
 	</path>
 	
@@ -34,7 +40,13 @@
 
 	<target name="generate-artifacts-client1" unless="generate-artifacts.notRequired" depends="init">
 	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${packageClient1}' -s '${gen.dir}' -keep ${WSDL}/Workflow.wsdl"/>
+	        <arg line="-d '${build.dir}' -p '${packageClient1}' -s '${gen.dir}' -keep ${WSDL_URL1}"/>
+	    </exec>
+	</target>
+
+	<target name="generate-artifacts-client2" unless="generate-artifacts.notRequired" depends="init">
+	    <exec executable="wsimport">
+	        <arg line="-d '${build.dir}' -p '${packageClient2}' -s '${gen.dir}' -keep ${WSDL_URL2}"/>
 	    </exec>
 	</target>
 
@@ -52,6 +64,20 @@
 					<path refid="WF.classpath" />
 				</classpath>
 		</javac>
+	</target>
+
+	<target name="build-client" depends="init, generate-artifacts-client1, generate-artifacts-client2" description="Build your solution">
+		<echo>Building the submitted solution (if needed)...</echo>
+		<javac destdir="${build.dir}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
+			<src path="${src.dir}"/>
+			<src path="${gen.dir}"/>
+			<include name="it/polito/dp2/WF/sol4/client1/**" />
+			<include name="it/polito/dp2/WF/lab4/*.java" />
+			<classpath>
+				<path refid="sol.classpath" />
+			</classpath>
+		</javac>
+		<echo>Done.</echo>
 	</target>
 
 </project>
