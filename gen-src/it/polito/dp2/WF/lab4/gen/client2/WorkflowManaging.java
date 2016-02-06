@@ -49,7 +49,7 @@ public interface WorkflowManaging {
 
     /**
      * 
-     * @param workflow
+     * @param workflowName
      * @throws SystemErrorException
      */
     @WebMethod
@@ -59,8 +59,8 @@ public interface WorkflowManaging {
         @FaultAction(className = SystemErrorException.class, value = "http://pad.polito.it/ws/Workflow/WorkflowManaging/createProcess/Fault/SystemError_Exception")
     })
     public void createProcess(
-        @WebParam(name = "workflow", targetNamespace = "")
-        WorkflowType workflow)
+        @WebParam(name = "workflowName", targetNamespace = "")
+        String workflowName)
         throws SystemErrorException
     ;
 

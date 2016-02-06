@@ -36,9 +36,9 @@ public class WorkflowManager {
     	return ret;
     }
     
-    public void createProcessInWorkflow(WorkflowType wf) {
+    public void createProcessInWorkflow(String wf) {
     	for(WorkflowType wft:workflows)
-			if(wft.getName().equals(wf.getName()))
+			if(wft.getName().equals(wf))
 			{
 				ProcessType prc = new ProcessType();
 				
@@ -46,7 +46,7 @@ public class WorkflowManager {
 				Calendar cal = Calendar.getInstance();
 				
 				prc.setStartAt(dateFormat.format(cal.getTime()));
-				for(ActionType at:wf.getAction())
+				for(ActionType at:wft.getAction())
 					if(at.isAutomInst())
 					{
 						ActionStatusType as = new ActionStatusType();

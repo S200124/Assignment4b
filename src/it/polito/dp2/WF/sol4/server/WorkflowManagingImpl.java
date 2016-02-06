@@ -29,7 +29,7 @@ public class WorkflowManagingImpl implements WorkflowManaging {
 	@RequestWrapper(localName = "createProcess", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.CreateProcess")
 	@ResponseWrapper(localName = "createProcessResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.CreateProcessResponse")
 	public void createProcess(
-			@WebParam(name = "workflow", targetNamespace = "") WorkflowType workflow)
+			@WebParam(name = "workflow", targetNamespace = "") String workflow)
 			throws SystemError_Exception {
 		manager.createProcessInWorkflow(workflow);
 	}

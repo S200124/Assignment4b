@@ -25,15 +25,15 @@ public interface WorkflowManaging {
 
     /**
      * 
-     * @param workflow
+     * @param workflowName
      * @throws SystemError_Exception
      */
     @WebMethod
     @RequestWrapper(localName = "createProcess", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.server.CreateProcess")
     @ResponseWrapper(localName = "createProcessResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.server.CreateProcessResponse")
     public void createProcess(
-        @WebParam(name = "workflow", targetNamespace = "")
-        WorkflowType workflow)
+        @WebParam(name = "workflowName", targetNamespace = "")
+        String workflowName)
         throws SystemError_Exception
     ;
 
@@ -42,8 +42,8 @@ public interface WorkflowManaging {
      * @param takenOverAction
      * @return
      *     returns it.polito.dp2.WF.lab4.gen.server.ActionStatusType
-     * @throws SystemError_Exception
      * @throws AlreadyTakenOrDifferentRoleError_Exception
+     * @throws SystemError_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")

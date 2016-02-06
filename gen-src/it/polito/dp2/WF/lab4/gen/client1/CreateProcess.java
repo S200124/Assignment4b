@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="workflow" type="{http://pad.polito.it/xsd/Workflow}workflowType" form="unqualified"/>
+ *         &lt;element name="workflowName" type="{http://www.w3.org/2001/XMLSchema}string" form="unqualified"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "createProcess", propOrder = {
-    "workflow"
+    "workflowName"
 })
 public class CreateProcess {
 
     @XmlElement(namespace = "", required = true)
-    protected WorkflowType workflow;
+    protected String workflowName;
 
     /**
-     * Gets the value of the workflow property.
+     * Gets the value of the workflowName property.
      * 
      * @return
      *     possible object is
-     *     {@link WorkflowType }
+     *     {@link String }
      *     
      */
-    public WorkflowType getWorkflow() {
-        return workflow;
+    public String getWorkflowName() {
+        return workflowName;
     }
 
     /**
-     * Sets the value of the workflow property.
+     * Sets the value of the workflowName property.
      * 
      * @param value
      *     allowed object is
-     *     {@link WorkflowType }
+     *     {@link String }
      *     
      */
-    public void setWorkflow(WorkflowType value) {
-        this.workflow = value;
+    public void setWorkflowName(String value) {
+        this.workflowName = value;
     }
 
 }
