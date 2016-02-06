@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://pad.polito.it/xsd/Workflow" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pad.polito.it/xsd/Workflow">
+
+    <xsd:simpleType name="roleType">
+    	<xsd:restriction base="xsd:string" />
+    </xsd:simpleType>
+
+	<xsd:complexType name="actionType">
+	    <xsd:sequence>
+	    	<xsd:element name="role" type="xsd:roleType" />
+		<xsd:element name="followingActions" type="tns:followingActionsType"></xsd:element>
+		<xsd:element name="nestedWorkflow" type="xsd:string"></xsd:element>
+	    </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="processType">
+		<xsd:sequence>
+			<xsd:element name="actionStatus" type="tns:actionStatusType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="startAt" type="xsd:string" use="required"></xsd:attribute>
+    </xsd:complexType>
+
+	<xsd:complexType name="actionStatusType">
+		<xsd:sequence>
+			<xsd:element name="actor" type="tns:actorType" maxOccurs="1" minOccurs="0"></xsd:element>
+			<xsd:element name="actionName" type="xsd:string"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="terminatedAt" type="xsd:string"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="actorType">
+		<xsd:sequence>
+			<xsd:element name="role" type="xsd:roleType" />
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="followingActionsType">
+		<xsd:sequence>
+			<xsd:element name="actionName" type="xsd:string" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	    
+    <xsd:complexType name="workflowType">
+    	<xsd:sequence>
+    		<xsd:element name="action" type="tns:actionType" maxOccurs="unbounded" minOccurs="1" />
+    		<xsd:element name="process" type="tns:processType" maxOccurs="unbounded" minOccurs="0" />
+    	</xsd:sequence>
+    	<xsd:attribute name="name" type="xsd:string" use="required" />
+    </xsd:complexType>
+
+	
+    <xsd:complexType name="actionStatusType">
+    	<xsd:sequence>
+    		<xsd:element name="actor" type="tns:actorType" maxOccurs="1" minOccurs="0" />
+		<xsd:element name="actionName" type="xsd:string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+		
+    <xsd:complexType name="takenOverActionType">
+    	<xsd:sequence>
+    		<xsd:element name="process" type="tns:processType" />
+    		<xsd:element name="actor" type="tns:actorType" />
+		<xsd:element name="actionName" type="xsd:string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+</xsd:schema>

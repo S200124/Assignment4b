@@ -11,7 +11,16 @@
 	<property name="package" value="it.polito.dp2.WF.lab4.gen"/>
 	<property name="WSDL" value="${lab4.location}/wsdl"/>
 
-	<target name="build-server" depends="init" description="Compile WSDL and generate bindings."> 
+	<property name="debug" value="true" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+	
+	<target name="init">
+		<mkdir dir="${gen.dir}" />
+	</target>
+
+	<target name="generate-artifacts" unless="generate-artifacts.notRequired" depends="init, chk-artifacts">
 	    <exec executable="wsimport">
 	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowService.wsdl"/>
 	    </exec>
@@ -19,4 +28,12 @@
 	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowSearchingService.wsdl"/>
 	    </exec>
 	</target>
+
+	<target name="build-server" depends="init" description="Build the sources">
+		<javac debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" destdir="${build.dir}">
+			<src path="${src.dir}" />
+			<classpath refid="project.classpath" />
+		</javac>
+	</target>
+
 </project>

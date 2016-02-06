@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="WorkflowSearchAndManage"
+	targetNamespace="http://pad.polito.it/ws/Workflow/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://pad.polito.it/ws/Workflow/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://pad.polito.it/ws/Workflow/" xmlns:ps="http://pad.polito.it/xsd/Workflow">
+			<xsd:import schemaLocation="Workflow.xsd"
+				namespace="http://pad.polito.it/xsd/Workflow" />
+
+			<xsd:element name="getWorkflows" type="tns:getWorkflows" />
+			<xsd:element name="getWorkflowsResponse" type="tns:getWorkflowsResponse" />
+
+			<xsd:element name="getProcesses" type="tns:getProcesses" />
+			<xsd:element name="getProcessesResponse" type="tns:getProcessesResponse" />
+
+			<xsd:element name="createProcess" type="tns:createProcess" />
+			<xsd:element name="createProcessResponse" type="tns:createProcessResponse" />
+
+			<xsd:element name="takeAction" type="tns:takeAction" />
+			<xsd:element name="takeActionResponse" type="tns:takeActionResponse" />
+
+			<xsd:element name="completeAction" type="tns:completeAction" />
+			<xsd:element name="completeActionResponse" type="tns:completeActionResponse" />
+
+			<xsd:element name="AlreadyTakenOrDifferentRoleError" type="tns:AlreadyTakenOrDifferentRoleError" />
+			<xsd:element name="systemError" type="tns:SystemError" />
+
+			<xsd:complexType name="getWorkflows">
+				<xsd:sequence />
+			</xsd:complexType>
+			<xsd:complexType name="getWorkflowsResponse">
+				<xsd:sequence>
+					<xsd:element name="return" type="ps:workflowType" maxOccurs="unbounded"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="SystemError">
+				<xsd:sequence>
+					<xsd:element name="message" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AlreadyTakenOrDifferentRoleError">
+				<xsd:sequence>
+					<xsd:element name="message" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="takeAction">
+				<xsd:sequence>
+					<xsd:element name="takenOverAction" type="ps:takenOverActionType" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="takeActionResponse">
+				<xsd:sequence>
+					<xsd:element name="return" type="ps:actionStatusType" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="completeAction">
+				<xsd:sequence>
+					<xsd:element name="completedAction" type="ps:actionStatusType" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="completeActionResponse">
+				<xsd:sequence />
+			</xsd:complexType>
+
+			<xsd:complexType name="createProcess">
+				<xsd:sequence>
+					<xsd:element name="workflow" type="ps:workflowType" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="createProcessResponse">
+				<xsd:sequence />
+			</xsd:complexType>
+
+			<xsd:complexType name="getProcesses">
+				<xsd:sequence />
+			</xsd:complexType>
+
+			<xsd:complexType name="getProcessesResponse">
+				<xsd:sequence>
+					<xsd:element name="return" type="ps:processType" maxOccurs="unbounded"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="getWorkflows">
+		<wsdl:part element="tns:getWorkflows" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getWorkflowsResponse">
+		<wsdl:part element="tns:getWorkflowsResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="SystemError">
+		<wsdl:part name="fault" element="tns:systemError" />
+	</wsdl:message>
+	<wsdl:message name="takeAction">
+		<wsdl:part name="parameters" element="tns:takeAction" />
+	</wsdl:message>
+	<wsdl:message name="takeActionResponse">
+		<wsdl:part name="parameters" element="tns:takeActionResponse" />
+	</wsdl:message>
+	<wsdl:message name="completeAction">
+		<wsdl:part name="parameters" element="tns:completeAction" />
+	</wsdl:message>
+	<wsdl:message name="completeActionResponse">
+		<wsdl:part name="parameters" element="tns:completeActionResponse" />
+	</wsdl:message>
+	<wsdl:message name="createProcess">
+		<wsdl:part name="parameters" element="tns:createProcess" />
+	</wsdl:message>
+	<wsdl:message name="createProcessResponse">
+		<wsdl:part name="parameters" element="tns:createProcessResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="AlreadyTakenOrDifferentRoleError">
+		<wsdl:part name="fault" element="tns:AlreadyTakenOrDifferentRoleError" />
+	</wsdl:message>
+	<wsdl:message name="getProcesses">
+		<wsdl:part name="parameters" element="tns:getProcesses" />
+	</wsdl:message>
+	<wsdl:message name="getProcessesResponse">
+		<wsdl:part name="parameters" element="tns:getProcessesResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="WorkflowSearching">
+		<wsdl:operation name="getWorkflows">
+			<wsdl:input message="tns:getWorkflows" />
+			<wsdl:output message="tns:getWorkflowsResponse" />
+			<wsdl:fault name="SystemError" message="tns:SystemError" />
+		</wsdl:operation>
+		<wsdl:operation name="getProcesses">
+			<wsdl:input message="tns:getProcesses" />
+			<wsdl:output message="tns:getProcessesResponse" />
+			<wsdl:fault name="SystemError" message="tns:SystemError" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="WorkflowManaging">
+		<wsdl:operation name="createProcess">
+			<wsdl:input message="tns:createProcess" />
+			<wsdl:output message="tns:createProcessResponse" />
+			<wsdl:fault name="SystemError" message="tns:SystemError" />
+		</wsdl:operation>
+		<wsdl:operation name="takeAction">
+			<wsdl:input message="tns:takeAction" />
+			<wsdl:output message="tns:takeActionResponse" />
+			<wsdl:fault name="SystemError" message="tns:SystemError" />
+			<wsdl:fault name="AlreadyTakenOrDifferentRoleError" message="tns:AlreadyTakenOrDifferentRoleError" />
+		</wsdl:operation>
+		<wsdl:operation name="completeAction">
+			<wsdl:input message="tns:completeAction" />
+			<wsdl:output message="tns:completeActionResponse" />
+			<wsdl:fault name="SystemError" message="tns:SystemError" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="WorkflowSearchingSOAP" type="tns:WorkflowSearching">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getWorkflows">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SystemError">
+				<soap:fault use="literal" name="SystemError" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getProcesses">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SystemError">
+				<soap:fault use="literal" name="SystemError" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="WorkflowManagingSOAP" type="tns:WorkflowManaging">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="createProcess">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SystemError">
+				<soap:fault use="literal" name="SystemError" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="takeAction">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SystemError">
+				<soap:fault use="literal" name="SystemError" />
+			</wsdl:fault>
+			<wsdl:fault name="AlreadyTakenOrDifferentRoleError">
+				<soap:fault use="literal" name="AlreadyTakenOrDifferentRoleError" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="completeAction">
+			<soap:operation
+				soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="SystemError">
+				<soap:fault use="literal" name="SystemError" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="WorkflowSearching">
+		<wsdl:port binding="tns:WorkflowSearchingSOAP" name="WorkflowSearchingPort">
+			<soap:address location="http://localhost:7071/wfinfo" />
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="WorkflowManaging">
+		<wsdl:port name="WorkflowManagingPort" binding="tns:WorkflowManagingSOAP">
+			<soap:address location="http://localhost:7070/wfcontrol" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
