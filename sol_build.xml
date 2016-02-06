@@ -20,16 +20,13 @@
 		<mkdir dir="${gen.dir}" />
 	</target>
 
-	<target name="generate-artifacts" unless="generate-artifacts.notRequired" depends="init, chk-artifacts">
+	<target name="generate-artifacts" unless="generate-artifacts.notRequired" depends="init">
 	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowService.wsdl"/>
-	    </exec>
-	    <exec executable="wsimport">
-	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/WorkflowSearchingService.wsdl"/>
+	        <arg line="-d '${build.dir}' -p '${package}' -s '${gen.dir}' -keep ${WSDL}/Workflow.wsdl"/>
 	    </exec>
 	</target>
 
-	<target name="build-server" depends="init" description="Build the sources">
+	<target name="build-server" depends="init, generate-artifacts" description="Build the sources">
 		<javac debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" destdir="${build.dir}">
 			<src path="${src.dir}" />
 			<classpath refid="project.classpath" />
