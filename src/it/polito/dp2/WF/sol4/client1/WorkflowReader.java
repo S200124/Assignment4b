@@ -1,6 +1,7 @@
 package it.polito.dp2.WF.sol4.client1;
 
 import it.polito.dp2.WF.lab4.gen.client1.ActionType;
+import it.polito.dp2.WF.lab4.gen.client1.ProcessType;
 import it.polito.dp2.WF.lab4.gen.client1.WorkflowType;
 
 import java.util.*;
@@ -36,7 +37,12 @@ public class WorkflowReader implements it.polito.dp2.WF.WorkflowReader {
 
 	@Override
 	public Set<it.polito.dp2.WF.ProcessReader> getProcesses() {
-		return (new HashSet<it.polito.dp2.WF.ProcessReader>());
+		Set<it.polito.dp2.WF.ProcessReader> ret = new HashSet<it.polito.dp2.WF.ProcessReader>();
+		
+		for(ProcessType pr:workflow.getProcess())
+			ret.add(new ProcessReader(pr, workflow));
+		
+		return ret;
 	}
 
 }

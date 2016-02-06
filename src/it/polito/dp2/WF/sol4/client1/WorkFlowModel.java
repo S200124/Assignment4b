@@ -7,18 +7,16 @@ import java.util.*;
 
 public final class WorkFlowModel {
 	
-	private static String targetURL;
-	
-	private WorkFlowModel() {
-		targetURL = System.getProperty("it.polito.dp2.WF.lab4.URL");
-		if(targetURL.isEmpty())
-			targetURL = "http://localhost:7071/wfinfo?wsdl";
-	}
+	private WorkFlowModel() {}
 	
 	public static List<WorkflowType> allWorkflow()
 	{
 		URL url;
 		try {
+			String targetURL = System.getProperty("it.polito.dp2.WF.lab4.URL");
+			if(targetURL.isEmpty())
+				targetURL = "http://localhost:7071/wfinfo?wsdl";
+			
 			url = new URL(targetURL);
 		} catch (MalformedURLException e) {
 			url = null;
@@ -44,6 +42,10 @@ public final class WorkFlowModel {
 	{	
 		URL url;
 		try {
+			String targetURL = System.getProperty("it.polito.dp2.WF.lab4.URL");
+			if(targetURL.isEmpty())
+				targetURL = "http://localhost:7071/wfinfo?wsdl";
+			
 			url = new URL(targetURL);
 		} catch (MalformedURLException e) {
 			url = null;
