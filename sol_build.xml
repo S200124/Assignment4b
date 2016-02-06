@@ -50,7 +50,7 @@
 	    </exec>
 	</target>
 
-	<target name="build-server" depends="init, generate-artifacts-server" description="Build the sources">
+	<target name="build-server" depends="init, generate-artifacts-server" description="Build the server">
 		<javac 
 			destdir="${build.dir}"
 			debug="${debug}"
@@ -68,8 +68,7 @@
 		</javac>
 	</target>
 
-	<target name="build-client" depends="init, generate-artifacts-client1, generate-artifacts-client2" description="Build your solution">
-		<echo>Building the submitted solution (if needed)...</echo>
+	<target name="build-client" depends="init, generate-artifacts-client1, generate-artifacts-client2" description="Build your clients">
 		<javac destdir="${build.dir}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
 			<src path="${src.dir}"/>
 			<src path="${gen.dir}"/>
@@ -81,7 +80,6 @@
 				<path refid="sol.classpath" />
 			</classpath>
 		</javac>
-		<echo>Done.</echo>
 	</target>
 
 </project>
