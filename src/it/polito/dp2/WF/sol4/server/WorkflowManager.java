@@ -24,39 +24,39 @@ public class WorkflowManager {
 		logger.fine("Workflows created.");
     }
     
-    public List<WorkflowType> getWorkflows() {
-    	return workflows;
+    public synchronized List<WorkflowType> getWorkflows() {
+    		return workflows;
     }
     
-    public List<ProcessType> getProcesses() {
-    	List<ProcessType> ret = new ArrayList<ProcessType>();
-    	for(WorkflowType wt:workflows)
-			for(ProcessType pt:wt.getProcess())
-				ret.add(pt);
-    	return ret;
+    public synchronized List<ProcessType> getProcesses() {
+	    	List<ProcessType> ret = new ArrayList<ProcessType>();
+	    	for(WorkflowType wt:workflows)
+				for(ProcessType pt:wt.getProcess())
+					ret.add(pt);
+	    	return ret;
     }
     
-    public void createProcessInWorkflow(String wf) {
-    	for(WorkflowType wft:workflows)
-			if(wft.getName().equals(wf))
-			{
-				ProcessType prc = new ProcessType();
-				
-				DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
-				Calendar cal = Calendar.getInstance();
-				
-				prc.setStartAt(dateFormat.format(cal.getTime()));
-				for(ActionType at:wft.getAction())
-					if(at.isAutomInst())
-					{
-						ActionStatusType as = new ActionStatusType();
-						as.setActionName(at.getName());
-						prc.getActionStatus().add(as);
-					}
-				
-				wft.getProcess().add(prc);
-				break;
-			}
+    public synchronized void createProcessInWorkflow(String wf) {
+	    	for(WorkflowType wft:workflows)
+				if(wft.getName().equals(wf))
+				{
+					ProcessType prc = new ProcessType();
+					
+					DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+					Calendar cal = Calendar.getInstance();
+					
+					prc.setStartAt(dateFormat.format(cal.getTime()));
+					for(ActionType at:wft.getAction())
+						if(at.isAutomInst())
+						{
+							ActionStatusType as = new ActionStatusType();
+							as.setActionName(at.getName());
+							prc.getActionStatus().add(as);
+						}
+					
+					wft.getProcess().add(prc);
+					break;
+				}
     }
     
     private List<WorkflowType> createWorkflows() {
