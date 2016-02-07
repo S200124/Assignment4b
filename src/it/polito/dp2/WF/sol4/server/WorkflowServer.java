@@ -1,5 +1,6 @@
 package it.polito.dp2.WF.sol4.server;
 
+import it.polito.dp2.WF.lab4.gen.server.ActionStatusType;
 import it.polito.dp2.WF.lab4.gen.server.ProcessType;
 import it.polito.dp2.WF.lab4.gen.server.WorkflowType;
 
@@ -16,13 +17,25 @@ public class WorkflowServer {
 		WorkflowManager wfm;
 		try {
 			wfm = new WorkflowManager();
-			/*
-			for(WorkflowType wt:wfm.getWorkflows())
-				System.out.println(wt.getName());
 			
 			for(ProcessType pt:wfm.getProcesses())
-				System.out.println(pt.getStartAt());
-			*/
+			{
+				System.out.println("*************" + pt.getProcessID() + "*************" + pt.getWorkflowName() + "*************");
+				for(ActionStatusType ast:pt.getActionStatus())
+				{
+					String str;
+					try {
+						str = ast.getTerminatedAt() + ", " + ast.getActor().getName() + " (" + ast.getActor().getRole() + ")";
+					}
+					catch(Exception ex) {
+						str = "";
+					}
+					System.out.println(ast.getActionStatusID() + ", " + ast.getActionName() + ", " + str);
+				}
+				 
+				System.out.println("--------------------------------------------------------------");
+			}
+			
 			/*
 			WorkflowSearchingImpl wsi = new WorkflowSearchingImpl(wfm);
 			WorkflowManagingImpl wmi = new WorkflowManagingImpl(wfm);

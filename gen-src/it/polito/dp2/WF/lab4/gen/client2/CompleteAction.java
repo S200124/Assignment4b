@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="completedAction" type="{http://pad.polito.it/xsd/Workflow}actionStatusType" form="unqualified"/>
+ *         &lt;element name="completedAction" type="{http://pad.polito.it/xsd/Workflow}completedActionType" form="unqualified"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 public class CompleteAction {
 
     @XmlElement(namespace = "", required = true)
-    protected ActionStatusType completedAction;
+    protected CompletedActionType completedAction;
 
     /**
      * Gets the value of the completedAction property.
      * 
      * @return
      *     possible object is
-     *     {@link ActionStatusType }
+     *     {@link CompletedActionType }
      *     
      */
-    public ActionStatusType getCompletedAction() {
+    public CompletedActionType getCompletedAction() {
         return completedAction;
     }
 
@@ -52,10 +52,10 @@ public class CompleteAction {
      * 
      * @param value
      *     allowed object is
-     *     {@link ActionStatusType }
+     *     {@link CompletedActionType }
      *     
      */
-    public void setCompletedAction(ActionStatusType value) {
+    public void setCompletedAction(CompletedActionType value) {
         this.completedAction = value;
     }
 

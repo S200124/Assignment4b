@@ -1,5 +1,5 @@
 
-package it.polito.dp2.WF.lab4.gen.client1;
+package it.polito.dp2.WF.lab4.gen.client2;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,17 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for takenOverActionType complex type.
+ * <p>Java class for completedActionType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="takenOverActionType">
+ * &lt;complexType name="completedActionType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="processID" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
- *         &lt;element name="actor" type="{http://pad.polito.it/xsd/Workflow}actorType" form="qualified"/>
+ *         &lt;element name="actionStatus" type="{http://pad.polito.it/xsd/Workflow}actionStatusType" form="qualified"/>
  *         &lt;element name="actionName" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -29,66 +28,39 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "takenOverActionType", namespace = "http://pad.polito.it/xsd/Workflow", propOrder = {
-    "processID",
-    "actor",
+@XmlType(name = "completedActionType", namespace = "http://pad.polito.it/xsd/Workflow", propOrder = {
+    "actionStatus",
     "actionName"
 })
-public class TakenOverActionType {
+public class CompletedActionType {
 
     @XmlElement(required = true)
-    protected String processID;
-    @XmlElement(required = true)
-    protected ActorType actor;
+    protected ActionStatusType actionStatus;
     @XmlElement(required = true)
     protected String actionName;
 
     /**
-     * Gets the value of the processID property.
+     * Gets the value of the actionStatus property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ActionStatusType }
      *     
      */
-    public String getProcessID() {
-        return processID;
+    public ActionStatusType getActionStatus() {
+        return actionStatus;
     }
 
     /**
-     * Sets the value of the processID property.
+     * Sets the value of the actionStatus property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ActionStatusType }
      *     
      */
-    public void setProcessID(String value) {
-        this.processID = value;
-    }
-
-    /**
-     * Gets the value of the actor property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ActorType }
-     *     
-     */
-    public ActorType getActor() {
-        return actor;
-    }
-
-    /**
-     * Sets the value of the actor property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ActorType }
-     *     
-     */
-    public void setActor(ActorType value) {
-        this.actor = value;
+    public void setActionStatus(ActionStatusType value) {
+        this.actionStatus = value;
     }
 
     /**

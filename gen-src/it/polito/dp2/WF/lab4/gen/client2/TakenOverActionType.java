@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="process" type="{http://pad.polito.it/xsd/Workflow}processType" form="qualified"/>
+ *         &lt;element name="processID" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
  *         &lt;element name="actor" type="{http://pad.polito.it/xsd/Workflow}actorType" form="qualified"/>
  *         &lt;element name="actionName" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
  *       &lt;/sequence>
@@ -30,41 +30,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "takenOverActionType", namespace = "http://pad.polito.it/xsd/Workflow", propOrder = {
-    "process",
+    "processID",
     "actor",
     "actionName"
 })
 public class TakenOverActionType {
 
     @XmlElement(required = true)
-    protected ProcessType process;
+    protected String processID;
     @XmlElement(required = true)
     protected ActorType actor;
     @XmlElement(required = true)
     protected String actionName;
 
     /**
-     * Gets the value of the process property.
+     * Gets the value of the processID property.
      * 
      * @return
      *     possible object is
-     *     {@link ProcessType }
+     *     {@link String }
      *     
      */
-    public ProcessType getProcess() {
-        return process;
+    public String getProcessID() {
+        return processID;
     }
 
     /**
-     * Sets the value of the process property.
+     * Sets the value of the processID property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ProcessType }
+     *     {@link String }
      *     
      */
-    public void setProcess(ProcessType value) {
-        this.process = value;
+    public void setProcessID(String value) {
+        this.processID = value;
     }
 
     /**

@@ -42,8 +42,8 @@ public interface WorkflowManaging {
      * @param takenOverAction
      * @return
      *     returns it.polito.dp2.WF.lab4.gen.server.ActionStatusType
-     * @throws SystemError_Exception
      * @throws AlreadyTakenOrDifferentRoleError_Exception
+     * @throws SystemError_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -65,7 +65,7 @@ public interface WorkflowManaging {
     @ResponseWrapper(localName = "completeActionResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.server.CompleteActionResponse")
     public void completeAction(
         @WebParam(name = "completedAction", targetNamespace = "")
-        ActionStatusType completedAction)
+        CompletedActionType completedAction)
         throws SystemError_Exception
     ;
 

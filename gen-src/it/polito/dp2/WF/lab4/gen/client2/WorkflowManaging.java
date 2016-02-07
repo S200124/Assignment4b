@@ -27,6 +27,23 @@ public interface WorkflowManaging {
 
     /**
      * 
+     * @param completedAction
+     * @throws SystemErrorException
+     */
+    @WebMethod
+    @RequestWrapper(localName = "completeAction", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client2.CompleteAction")
+    @ResponseWrapper(localName = "completeActionResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client2.CompleteActionResponse")
+    @Action(input = "http://pad.polito.it/ws/Workflow/WorkflowManaging/completeActionRequest", output = "http://pad.polito.it/ws/Workflow/WorkflowManaging/completeActionResponse", fault = {
+        @FaultAction(className = SystemErrorException.class, value = "http://pad.polito.it/ws/Workflow/WorkflowManaging/completeAction/Fault/SystemError_Exception")
+    })
+    public void completeAction(
+        @WebParam(name = "completedAction", targetNamespace = "")
+        CompletedActionType completedAction)
+        throws SystemErrorException
+    ;
+
+    /**
+     * 
      * @param takenOverAction
      * @return
      *     returns it.polito.dp2.WF.lab4.gen.client2.ActionStatusType
@@ -61,23 +78,6 @@ public interface WorkflowManaging {
     public void createProcess(
         @WebParam(name = "workflowName", targetNamespace = "")
         String workflowName)
-        throws SystemErrorException
-    ;
-
-    /**
-     * 
-     * @param completedAction
-     * @throws SystemErrorException
-     */
-    @WebMethod
-    @RequestWrapper(localName = "completeAction", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client2.CompleteAction")
-    @ResponseWrapper(localName = "completeActionResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.client2.CompleteActionResponse")
-    @Action(input = "http://pad.polito.it/ws/Workflow/WorkflowManaging/completeActionRequest", output = "http://pad.polito.it/ws/Workflow/WorkflowManaging/completeActionResponse", fault = {
-        @FaultAction(className = SystemErrorException.class, value = "http://pad.polito.it/ws/Workflow/WorkflowManaging/completeAction/Fault/SystemError_Exception")
-    })
-    public void completeAction(
-        @WebParam(name = "completedAction", targetNamespace = "")
-        ActionStatusType completedAction)
         throws SystemErrorException
     ;
 

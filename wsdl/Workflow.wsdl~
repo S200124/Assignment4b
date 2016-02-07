@@ -72,7 +72,7 @@
 
 			<xsd:complexType name="createProcess">
 				<xsd:sequence>
-					<xsd:element name="workflow" type="ps:workflowType" />
+					<xsd:element name="workflowName" type="xsd:string"></xsd:element>
 				</xsd:sequence>
 			</xsd:complexType>
 

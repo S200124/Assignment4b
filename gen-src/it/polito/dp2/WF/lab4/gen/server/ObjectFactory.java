@@ -141,6 +141,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CompletedActionType }
+     * 
+     */
+    public CompletedActionType createCompletedActionType() {
+        return new CompletedActionType();
+    }
+
+    /**
      * Create an instance of {@link FollowingActionsType }
      * 
      */

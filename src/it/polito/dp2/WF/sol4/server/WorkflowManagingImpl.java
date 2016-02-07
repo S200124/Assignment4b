@@ -7,12 +7,12 @@ import javax.jws.WebService;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
+import it.polito.dp2.WF.lab4.gen.server.CompletedActionType;
 import it.polito.dp2.WF.lab4.gen.server.ActionStatusType;
 import it.polito.dp2.WF.lab4.gen.server.AlreadyTakenOrDifferentRoleError_Exception;
 import it.polito.dp2.WF.lab4.gen.server.SystemError_Exception;
 import it.polito.dp2.WF.lab4.gen.server.TakenOverActionType;
 import it.polito.dp2.WF.lab4.gen.server.WorkflowManaging;
-import it.polito.dp2.WF.lab4.gen.server.WorkflowType;
 
 @WebService(serviceName="WorkflowManaging", portName="WorkflowManagingPort", targetNamespace="http://pad.polito.it/ws/Workflow/", endpointInterface="it.polito.dp2.WF.lab4.gen.server.WorkflowManaging")
 public class WorkflowManagingImpl implements WorkflowManaging {
@@ -43,19 +43,19 @@ public class WorkflowManagingImpl implements WorkflowManaging {
 			@WebParam(name = "takenOverAction", targetNamespace = "") TakenOverActionType takenOverAction)
 			throws AlreadyTakenOrDifferentRoleError_Exception,
 			SystemError_Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.takeOverAction(takenOverAction);
 	}
 
 	@Override
 	@WebMethod
-	@RequestWrapper(localName = "completeAction", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.CompleteAction")
-	@ResponseWrapper(localName = "completeActionResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.CompleteActionResponse")
+	@RequestWrapper(localName = "completeAction", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.server.CompleteAction")
+	@ResponseWrapper(localName = "completeActionResponse", targetNamespace = "http://pad.polito.it/ws/Workflow/", className = "it.polito.dp2.WF.lab4.gen.server.CompleteActionResponse")
 	public void completeAction(
-			@WebParam(name = "completedAction", targetNamespace = "") ActionStatusType completedAction)
+			@WebParam(name = "completedAction", targetNamespace = "") CompletedActionType completedAction)
 			throws SystemError_Exception {
-		// TODO Auto-generated method stub
-		
+		manager.completeAction(completedAction);
 	}
+
+
 
 }

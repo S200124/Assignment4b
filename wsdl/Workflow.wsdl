@@ -62,7 +62,7 @@
 
 			<xsd:complexType name="completeAction">
 				<xsd:sequence>
-					<xsd:element name="completedAction" type="ps:actionStatusType" />
+					<xsd:element name="completedAction" type="ps:completedActionType" />
 				</xsd:sequence>
 			</xsd:complexType>
 

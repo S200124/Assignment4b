@@ -22,6 +22,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="actionStatus" type="{http://pad.polito.it/xsd/Workflow}actionStatusType" maxOccurs="unbounded" form="qualified"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="processID" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="workflowName" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="startAt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,6 +40,10 @@ public class ProcessType {
 
     @XmlElement(required = true)
     protected List<ActionStatusType> actionStatus;
+    @XmlAttribute(name = "processID", required = true)
+    protected String processID;
+    @XmlAttribute(name = "workflowName", required = true)
+    protected String workflowName;
     @XmlAttribute(name = "startAt", required = true)
     protected String startAt;
 
@@ -68,6 +74,54 @@ public class ProcessType {
             actionStatus = new ArrayList<ActionStatusType>();
         }
         return this.actionStatus;
+    }
+
+    /**
+     * Gets the value of the processID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProcessID() {
+        return processID;
+    }
+
+    /**
+     * Sets the value of the processID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProcessID(String value) {
+        this.processID = value;
+    }
+
+    /**
+     * Gets the value of the workflowName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getWorkflowName() {
+        return workflowName;
+    }
+
+    /**
+     * Sets the value of the workflowName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setWorkflowName(String value) {
+        this.workflowName = value;
     }
 
     /**

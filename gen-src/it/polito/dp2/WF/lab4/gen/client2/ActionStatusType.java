@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="actor" type="{http://pad.polito.it/xsd/Workflow}actorType" minOccurs="0" form="qualified"/>
  *         &lt;element name="actionName" type="{http://www.w3.org/2001/XMLSchema}string" form="qualified"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="actionStatusID" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="terminatedAt" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,6 +40,8 @@ public class ActionStatusType {
     protected ActorType actor;
     @XmlElement(required = true)
     protected String actionName;
+    @XmlAttribute(name = "actionStatusID", required = true)
+    protected String actionStatusID;
     @XmlAttribute(name = "terminatedAt")
     protected String terminatedAt;
 
@@ -88,6 +91,30 @@ public class ActionStatusType {
      */
     public void setActionName(String value) {
         this.actionName = value;
+    }
+
+    /**
+     * Gets the value of the actionStatusID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getActionStatusID() {
+        return actionStatusID;
+    }
+
+    /**
+     * Sets the value of the actionStatusID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setActionStatusID(String value) {
+        this.actionStatusID = value;
     }
 
     /**
